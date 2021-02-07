@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UICollectionViewController {
-    private let customFlowLayout = CustomFlowLayout(numberOfColumns: 2)
+    private let customFlowLayout = CustomFlowLayout(numberOfColumns: 4)
 
     private lazy var items = TableData().items
 
@@ -26,6 +26,10 @@ class ViewController: UICollectionViewController {
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
         collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
